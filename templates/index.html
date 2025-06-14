@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sudoku Solver</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Sudoku Solver</h1>
+    <form method="post" enctype="multipart/form-data">
+        <input type="file" name="sudoku" accept="image/*" required>
+        <button type="submit">Upload and Solve</button>
+    </form>
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+
+    {% if solved %}
+        <h2>Solved Sudoku</h2>
+        <table>
+        {% for i in range(9) %}
+            <tr>
+            {% for j in range(9) %}
+                {% if original[i][j] == 0 %}
+                    <td class="solved">{{ solved[i][j] }}</td>
+                {% else %}
+                    <td>{{ solved[i][j] }}</td>
+                {% endif %}
+            {% endfor %}
+            </tr>
+        {% endfor %}
+        </table>
+    {% endif %}
+</body>
+</html>
